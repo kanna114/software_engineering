@@ -31,7 +31,7 @@ public class CheckOutRoomControl {
 			 * Your code for consuming payment by using domain.payment.PaymentManager
 			 */
 			PaymentManager paymentManager = getPaymentManager();
-			createPayment(stayingDate, roomNumber);
+			paymentManager.consumePayment(stayingDate, roomNumber);
 
 		}
 		catch (RoomException e) {
