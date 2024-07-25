@@ -64,6 +64,14 @@ public class ReservationManager {
 			throw exception;
 		}
 
+		//If reservation has been cancelled already
+		if (reservation.getStatus().equals(Reservation.RESERVATION_STATUS_CANCELED)) {
+			ReservationException exception = new ReservationException(
+					ReservationException.CODE_RESERVATION_CANCELED);
+			exception.getDetailMessages().add("reservation_number[" + reservationNumber + "]");
+			throw exception;
+		}
+
 		Date stayingDate = reservation.getStayingDate();
 		reservation.setStatus(Reservation.RESERVATION_STATUS_CONSUME);
 		reservationDao.updateReservation(reservation);
